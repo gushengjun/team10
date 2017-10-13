@@ -51,7 +51,8 @@ public class Game {
         }
         return true;
 //
-//
+//add empty here 
+
     }
 
     private Card getTopCard(int columnNumber) {
