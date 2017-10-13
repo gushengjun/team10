@@ -40,18 +40,10 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
-	  cols.get(columnNumber).remove(cols.get(columnNumber).size() - 1);
-
     }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-	if (cols.get(columnNumber).isEmpty()) {
-            return false;
-        }
-        return true;
-
-	
     }
 
     private Card getTopCard(int columnNumber) {
