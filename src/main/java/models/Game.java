@@ -16,6 +16,9 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
+        for (int i = 0; i < 4; ++i) {
+            cols.add(new ArrayList<Card>());
+        }
     }
 
     public void buildDeck() {
@@ -32,16 +35,22 @@ public class Game {
     }
 
     public void dealFour() {
-        // remove the top card from the deck and add it to a column; repeat for each of the four columns
+        // remove the top card from the deck and add it to a column;
+        // repeat for each of the four columns
+
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        cols.get(columnNumber).remove(cols.get(columnNumber).size() - 1);
     }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-        return false;
+        if (cols.get(columnNumber).isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private Card getTopCard(int columnNumber) {
