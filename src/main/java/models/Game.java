@@ -16,7 +16,9 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
-
+	for (int i = 0; i < 4; ++i) {
+            cols.add(new ArrayList<Card>());
+        }
     }
 
     public void buildDeck() {
@@ -30,29 +32,26 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
+	Collections.shuffle(deck);
     }
 
     public void dealFour() {
-        // remove the top card from the deck and add it to a column;
-        // repeat for each of the four columns
+        ////(addempty here) remove the top card from the deck and add it to a column; repeat for each of the four columns
 
+        for (int i = 0; i < 4; i++) {
+            Card a = deck.get(deck.size()-1);
+            addCardToCol(i,a);
+            deck.remove(deck.size()-1);
+        }
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
-	cols.get(columnNumber).remove(cols.get(columnNumber).size() - 1);
-
     }
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-        if (cols.get(columnNumber).isEmpty()) {
-            return false;
-        }
-        return true;
-//
-//add empty here 
-
+        return false;
     }
 
     private Card getTopCard(int columnNumber) {
@@ -62,7 +61,8 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-	
+        Card c = cols.get(columnFrom).remove(index:cols.get(columnFrom).size()-1);
+	cols.get(columnTo).add(c);
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
