@@ -51,7 +51,8 @@ public class Game {
         }
         return true;
 //
-//
+//why conflict exit?
+
     }
 
     private Card getTopCard(int columnNumber) {
