@@ -1,5 +1,8 @@
 # team10
-Yuechen Xu
-
-	Shengjun Gu
-Haoxuan Zhang
+Teammates Name:
+		
+	1. Shengjun Gu
+	2. Haoxuan Zhang
+	3. Dingzhi Hu
+	4. Yuechen Xu
+	5.
