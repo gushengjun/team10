@@ -1,4 +1,10 @@
 # team10
-
 Teammates Name:
-	Shengjun Gu
+		
+	1. Shengjun Gu
+	2. Haoxuan Zhang
+	3. Dingzhi Hu
+	4. Yuechen Xu
+	
+
+
