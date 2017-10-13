@@ -51,6 +51,8 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
+        Card c = cols.get(columnFrom).remove(index:cols.get(columnFrom).size()-1);
+	cols.get(columnTo).add(c);
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
