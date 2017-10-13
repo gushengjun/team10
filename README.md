@@ -5,6 +5,4 @@ Teammates Name:
 	2. Haoxuan Zhang
 	3. Dingzhi Hu
 	4. Yuechen Xu
-	
-
-
+	5.
