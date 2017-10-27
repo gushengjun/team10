@@ -1,33 +1,30 @@
-<head>
-
-    <article class="header1">
-        <h1>Aces Up</h1>
-        <article id="create-intro" class="intro">
-            <p>How to play?</p>
-        </article>
+<article class="header1">
+    <h1>Aces Up</h1>
+    <article id="create-intro" class="intro">
+        <p>How to play?</p>
     </article>
+</article>
 
-    <script type="text/javascript">
-        var c=0
-        var t
-        function timedCount()
-        {
-            document.getElementById('txt').value=c
-            c=c+1
-            t=setTimeout("timedCount()",1000)
-        }
+<script type="text/javascript">
+    var c=0
+    var t
+    function timedCount()
+    {
+        document.getElementById('txt').value=c
+        c=c+1
+        t=setTimeout("timedCount()",1000)
+    }
 
-        function stopCount()
-        {
-            c=0;
-            setTimeout("document.getElementById('txt').value=0",0);
-            clearTimeout(t);
-        }
-    </script>
-
-</head>
+    function stopCount()
+    {
+        c=0;
+        setTimeout("document.getElementById('txt').value=0",0);
+        clearTimeout(t);
+    }
+</script>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
@@ -126,6 +123,16 @@
 
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+<div id="newgame-page" class="hidden">
+    <div class="modal-dialog2">
+        <p class="new1">Do you want to start a new game? </p>
+        <div class="modal-footer">
+            <button type="button" class="modal-button">Cancel</button>
+            <button type="button" class="modal-accept-button"><a style="text-decoration:none" href="javascript:history.go(0)">Yes</a></button>
+        </div>
+    </div>
+</div>
+
 <script>
 
 var game;
@@ -174,6 +181,24 @@ $.ajax({
   dataType:"json",
 });
 });
+
+var comfor = document.getElementById('newgame-page');
+var cancle = document.getElementsByClassName("modal-button")[0];
+
+$("#new").click(function(){
+    comfor.style.display = "block";
+    backdrop.style.display = "block";
+})
+$(window).click(function(event) {
+    if (event.target ==comfor){
+            comfor.style.display = "none";
+            backdrop.style.display = "none";
+    }
+})
+$(cancle).click(function(event) {
+    comfor.style.display = "none";
+    backdrop.style.display = "none";
+})
 
 
 function removeCard(colNumber){
