@@ -1,7 +1,18 @@
+<<<<<<< HEAD
 <article class="header1">
     <h1>Aces Up</h1>
     <article id="create-intro" class="intro">
         <p>How to play?</p>
+=======
+
+<head>
+
+    <article class="header1">
+        <h1>Aces Up</h1>
+        <article id="create-intro" class="intro">
+            <p>How to play?</p>
+        </article>
+>>>>>>> master
     </article>
 </article>
 
@@ -37,7 +48,7 @@
 
 <table>
     <tr class="title">
-        <td>Column0</td>
+        <td >Column0</td>
         <td >Column1</td>
         <td >Column2</td>
         <td >Column3</td>
@@ -119,9 +130,43 @@
 </table>
 
 <button id="dealButton">Deal</button>
-<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
 
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
+<div class="modal-remove">
+    <BR>Remove from:<br/> <button id="Remove1">Column0</button><button id="Remove2">Column1</button><br/><button id="Remove3">Column2</button><button id="Remove4">Column3</button>
+</div>
+
+<div class="modal-move">
+    <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  />
+    <br/><button id="moveButton">Move</button>
+</div>
+
+<div class="newgame">
+    <button id="new">New Game</button>
+</div>
+
+<div id="modal-backdrop" class="hidden"></div>
+<div id="introduce" class="hidden">
+    <div class="modal-dialog">
+        <nav>
+            <h2>How to play?</h2>
+            <ul>
+                <li>Deal four cards in a row face up.</li>
+                <li>If there are two or more cards of the same suit, discard all but the highest-ranked card of that suit. Aces rank high.</li>
+                <li>Repeat step 2 until there are no more pairs of cards with the same suit.</li>
+                <li>Whenever there are any empty spaces, you may choose the top card of another pile to be put into the empty space. After you do this, go to Step 2.</li>
+                <li>When there are no more cards to move or remove, deal out the next four cards from the deck face-up onto each pile.</li>
+                <li>Repeat Step 2, using only the visible, or top, cards on each of the four piles.</li>
+                <li>When the last four cards have been dealt out and any moves made, the game is over. The fewer cards left in the tableau, the better. To win is to have only the four aces left.</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div id="failed-remove" class="hidden">
+    <div class="modal-dialog2">
+        <p class="a1">Oops!!</br>You can't remove this card!</p>
+    </div>
+</div>
 
 <div id="newgame-page" class="hidden">
     <div class="modal-dialog2">
@@ -135,40 +180,110 @@
 
 <script>
 
-var game;
+    var game;
 
-function display(game) {
-console.log(game);
+    function display(game) {
+        console.log(game);
 
-$( '.columnOfCards .cardLocation' ).html("");
+        $( '.columnOfCards .cardLocation' ).html("");
 
-    $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+        $.each(game.cols[0], function( key, val ) {
+            $( '#c0 .l'+key ).html(val.value + val.suit);
+        });
+
+        $.each(game.cols[1], function( key, val ) {
+            $( '#c1 .l'+key ).html(val.value + val.suit);
+        });
+
+        $.each(game.cols[2], function( key, val ) {
+            $( '#c2 .l'+key ).html(val.value + val.suit);
+        });
+
+        $.each(game.cols[3], function( key, val ) {
+            $( '#c3 .l'+key ).html(val.value + val.suit);
+        });
+
+
+
+    }
+
+    // Calls ApplicationController.gameGet()
+    $.getJSON("http://localhost:8080/game", function( data ) {
+        display(data);
+        game = data;
     });
 
- $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+
+    $("#dealButton").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "/dealGame",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+                game = data;
+                display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
     });
 
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+    var intro1 = document.getElementById('introduce');
+    var backdrop = document.getElementById('modal-backdrop');
+    var removecard = document.getElementById('failed-remove');
+
+    $("#create-intro").click(function(){
+        intro1.style.display = "block";
+        backdrop.style.display = "block";
+    })
+
+    $(window).click(function(event) {
+        if (event.target ==intro1){
+            intro1.style.display = "none";
+            backdrop.style.display = "none";
+        }
+    })
+
+    function removeCard(colNumber){
+        var oldLen = game.cols[colNumber].length;
+        console.log(oldLen);
+        $.ajax({
+            type: "POST",
+            url: "/removeCard/"+colNumber,
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+                game = data;
+                console.log(game.cols[colNumber].length );
+                if (game.cols[colNumber].length == oldLen) {
+                    removecard.style.display = "block";
+                    backdrop.style.display = "block";
+                }
+                display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
+    }
+
+    $(window).click(function(event) {
+        if (event.target == removecard){
+            removecard.style.display = "none";
+            backdrop.style.display = "none";
+        }
+    })
+
+    $("#Remove1").click(function(){
+        removeCard(0);
+    });
+    $("#Remove2").click(function(){
+        removeCard(1);
+    });
+    $("#Remove3").click(function(){
+        removeCard(2);
+    });
+    $("#Remove4").click(function(){
+        removeCard(3);
     });
 
- $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
-    });
-
-
-
-}
-
-// Calls ApplicationController.gameGet()
-$.getJSON("http://localhost:8080/game", function( data ) {
-display(data);
-game = data;
-});
-
-
+    
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
@@ -244,6 +359,7 @@ $.ajax({
   dataType:"json",
 });
 });
+
 
 
 </script>
