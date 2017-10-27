@@ -1,9 +1,42 @@
-<h1>Aces Up</h1>
+<head>
+
+    <article class="header1">
+        <h1>Aces Up</h1>
+        <article id="create-intro" class="intro">
+            <p>How to play?</p>
+        </article>
+    </article>
+
+    <script type="text/javascript">
+        var c=0
+        var t
+        function timedCount()
+        {
+            document.getElementById('txt').value=c
+            c=c+1
+            t=setTimeout("timedCount()",1000)
+        }
+
+        function stopCount()
+        {
+            c=0;
+            setTimeout("document.getElementById('txt').value=0",0);
+            clearTimeout(t);
+        }
+    </script>
+
+</head>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
+
+<form>
+    <input type="button" value="begin" onClick="timedCount()">
+    <input type="text" id="txt">
+    <input type="button" value="stop" onClick="stopCount()">
+</form>
 
 <table>
     <tr class="title">
