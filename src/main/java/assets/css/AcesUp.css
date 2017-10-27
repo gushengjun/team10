@@ -1,18 +1,255 @@
+body {
+    background-color:#e0ecf0;
+}
+.header1 {
+    background-color: lightblue;
+}
+h1{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 50px;
+    margin: -3px;
+    padding-left:50px;
+}
+h2{
+    padding: 10px;
+}
+.intro{
+    position: fixed;
+    text-decoration: underline;
+    font-style:italic;
+    left: 280px;
+    top:20px;
+    cursor: pointer;
+}
+
+.intro:hover {
+    color:#000079;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=146, Color=#787878)";/*IE 8*/
+    text-shadow: 3px 2px 6px rgba(120,120,120,0.9);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color=#787878); /*IE 5.5-7*/
+}
+
+table {
+    font-family: 'Raleway', sans-serif;
+    background-color:#c9dde3;
+    font-size:15px;
+    margin-top:20px;
+}
+
 tr{
-width:500px;
+    width:500px;
 }
 
 td{
-width:100px;
-height:20px;
-text-align:center;
+    width:120px;
+    height:20px;
+    text-align:center;
 }
 
 .title{
-font-weight: bold;
+    font-size:20px;
+    font-weight: bold;
 }
 
 .cardLocation{
-width: 100px;
-background-color:#F0F0F0;
+    width: 100px;
+    background-color:#F0F0F0;
+}
+
+.modal-move {
+    width:auto;
+    max-width:250px;
+    position:fixed;
+    top:100px;
+    left:530px;
+}
+
+.modal-remove {
+    position:fixed;
+    top:230px;
+    left:530px;
+}
+
+#moveButton{
+    font-size: 10px;
+    background-color: lightblue;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 7px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#moveButton:hover{
+    background-color:#84C1FF;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=146, Color=#787878)";/*IE 8*/
+    text-shadow: 3px 2px 6px rgba(120,120,120,0.9);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color=#787878); /*IE 5.5-7*/
+}
+
+#Remove1{
+    background-color:lightblue;
+    cursor: pointer;
+}
+#Remove2{
+    background-color:lightblue;
+    cursor: pointer;
+}
+#Remove3{
+    background-color:lightblue;
+    cursor: pointer;
+}
+#Remove4{
+    background-color:lightblue;
+    cursor: pointer;
+}
+#new {
+    cursor: pointer;
+    
+    font-size: 20px;
+    background-color: lightgray;
+    -webkit-border-radius: 200px;/*Safari, Chrome*/
+    -moz-border-radius: 200px;/*Firefox*/
+    border-radius: 200px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.newgame{
+    position:fixed;
+    top:450px;
+    left:530px;
+}
+
+#new:hover {
+    background-color:gray;
+    color:white;
+}
+
+#dealButton {
+    position:fixed;
+    top:390px;
+    left:530px;
+    cursor: pointer;
+    
+    font-size: 20px;
+    background-color: lightgray;
+    -webkit-border-radius: 200px;/*Safari, Chrome*/
+    -moz-border-radius: 200px;/*Firefox*/
+    border-radius: 200px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#dealButton:hover {
+    background-color:gray;
+    color:white;
+}
+
+.hidden {
+    display:none;
+}
+
+
+.modal-dialog {
+    width: auto;
+    max-width: 600px;
+    min-width: 350px;
+    min-height: 300px;
+    margin: 40px auto;
+    background-color: lightblue;
+    border-radius: 15px;
+}
+
+.modal-dialog2 {
+    width: auto;
+    max-width: 400px;
+    min-width: 150px;
+    min-height: 100px;
+    margin: 40px auto;
+    background-color: lightblue;
+    border-radius: 15px;
+}
+
+.new1 {
+    font-size:20px;
+    padding: 10px;
+}
+
+#modal-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+#introduce {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    overflow: scroll;
+}
+
+#newgame-page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    overflow: scroll;
+}
+
+.a1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size:25px;
+    margin:10px;
+    padding-top:5px;
+}
+
+#failed-remove {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    overflow: scroll;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 10px 20px 10px;
+}
+
+.modal-footer button {
+    font-size: 20px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.modal-footer .modal-button:hover {
+    background-color: #eee;
+}
+
+.modal-footer .modal-accept-button {
+    background-color: #319df6;
+    color: #fff;
+}
+
+.modal-footer .modal-accept-button:hover {
+    background-color: #087dde;
 }
